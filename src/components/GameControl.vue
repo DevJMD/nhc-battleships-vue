@@ -15,13 +15,15 @@
                     placeholder="e.g. A"
                     @input="onLetterInput"
                     @keyup="onLetterKeyup"
+                    @focusin="onLetterFocus"
                 />
                 <input
                     type="number"
                     class="c-controls__input c-controls__input--number"
                     v-model="numberInput"
                     placeholder="e.g. 5"
-                    @keydown="onNumberKeydown"
+                    @keyup="onNumberKeyUp"
+                    @focusin="onNumberFocus"
                     :max="maxRowCount"
                     :min="1"
                 />
@@ -72,21 +74,32 @@ const onLetterKeyup = (): void => {
     }
 };
 
+const onNumberFocus = (): void => {
+    numberInput.value = '';
+};
+
 /**
  * Handles backspace behavior in the number input.
  *
  * If the backspace key is pressed and the number input is empty,
- * focus back on the letter input
+ * focus back on the letter input.
+ * We need to handle logic for number inputs where "-" can be used
+ * to indicate negative numbers.
  *
  * @param {KeyboardEvent} event - The keyboard event.
  * @returns {void}
  */
-const onNumberKeydown = (event: KeyboardEvent): void => {
-    if (event.key === 'Backspace' && !numberInput.value) {
+const onNumberKeyUp = (event: KeyboardEvent): void => {
+    const rawValue = numberField.value?.value || '';
+
+    if (rawValue.includes('-')) {
+        numberField.value!.value = rawValue.replace('-', '');
+    }
+
+    if (event.key === 'Backspace' && rawValue === '') {
         letterField.value?.focus();
     }
 };
-
 
 /**
  * Fires a shot at the coordinate entered by the player.
