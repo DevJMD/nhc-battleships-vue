@@ -81,3 +81,22 @@ npm run lint
     - Error handling could be entirely removed from the game logic and moved to its own logic.
     - Better error handling all around.
 
+
+- Styling;
+  - Using Sass with BEM methodology.
+  - The stack I use personally is based on an inversion of the BEM methodology, commonly
+known as the "inverted pyramid" concept.
+
+- TypeScript/Vue;
+  - Using Vite, ESLint, Vue 3, and Vitest.
+  - For UI testing, I use Vitest with Happy DOM.
+  - For unit testing, I use Vitest.
+  - Uses Pinia for state management.
+  - ESLint keeps my type checking sanity in check.
+  - Didn't use Prettier as I find it too opinionated.
+  - Components are broken down into smaller components for reusability.
+  - Styles are seperated into their own files for better maintainability.
+ 
+- Other;
+  - Deployed to Cloudflare Pages with automated deployements via Cloudflare integration.
+  - Did this purely for fun, testing speedy SPA deployments (super quick!)
