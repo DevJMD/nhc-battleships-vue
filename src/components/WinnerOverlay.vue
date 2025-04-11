@@ -40,14 +40,17 @@ const feedbackStore = useFeedbackStore();
 const overlay = ref<HTMLElement | null>(null);
 
 const restartGame = () => {
-    boardStore.initGame();
     feedbackStore.clearMessages();
+    boardStore.initGame();
+
     closeOverlay();
 };
 
 const closeOverlay = () => {
     boardStore.gameOver = false;
+
     const appHeader = document.querySelector('.app__header-title') as HTMLElement;
+
     appHeader?.focus();
 };
 
