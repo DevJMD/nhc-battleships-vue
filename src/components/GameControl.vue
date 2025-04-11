@@ -88,7 +88,7 @@ const fireShot = (): void => {
         letterInput.value = '';
         numberInput.value = '';
 
-        letterField?.value.focus();
+        letterField.value?.focus();
 
         return;
     }
