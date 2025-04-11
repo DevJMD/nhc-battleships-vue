@@ -1,20 +1,10 @@
-import {
-    ROW_COUNT,
-    COLUMN_COUNT,
-}                           from '../state/state.board';
-import { useShipStore }     from '../store/store.ship';
+import { ROW_COUNT, COLUMN_COUNT } from '../state/state.board';
+import { useShipStore } from '../store/store.ship';
 import { useFeedbackStore } from '../store/store.feedback';
-import type {
-    BoardState,
-    Ship,
-    ShipPosition,
-}                           from '../interface';
-import {
-    areAllShipsSunk,
-    placeShipRandomly,
-}                           from './actions.ship';
-import { GAME_MESSAGES }    from '../../constants';
-import formatString         from '../../utils/util.format-string';
+import { areAllShipsSunk, placeShipRandomly } from './actions.ship';
+import { GAME_MESSAGES } from '../../constants';
+import formatString from '../../utils/util.format-string';
+import type { BoardState, Ship, ShipPosition } from '../interface';
 
 const validColumns = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.slice(0, COLUMN_COUNT);
 

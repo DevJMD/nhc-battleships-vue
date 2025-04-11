@@ -3,36 +3,38 @@
         <!-- Game board -->
         <table class="c-game-board">
             <thead class="c-game-board__header">
-                <tr>
-                    <th class="c-game-board__header-cell">🚢</th>
-                    <th class="c-game-board__header-cell" v-for="col in columns" :key="col">
-                        {{ col }}
-                    </th>
-                </tr>
+            <tr>
+                <th class="c-game-board__header-cell">🚢</th>
+                <th class="c-game-board__header-cell" v-for="col in columns" :key="col">
+                    {{ col }}
+                </th>
+            </tr>
             </thead>
             <tbody class="c-game-board__body">
-                <tr class="c-game-board__row" v-for="(row, rowIndex) in board" :key="rowIndex">
-                    <th class="c-game-board__row-header">{{ rowIndex + 1 }}</th>
-                    <td
-                        class="c-game-board__cell"
-                        v-for="(cell, colIndex) in row"
-                        :key="colIndex"
-                        :data-row="rowIndex"
-                        :data-col="colIndex"
-                        :class="{
+            <tr class="c-game-board__row" v-for="(row, rowIndex) in board" :key="rowIndex">
+                <th class="c-game-board__row-header">{{ rowIndex + 1 }}</th>
+                <td
+                    class="c-game-board__cell"
+                    v-for="(cell, colIndex) in row"
+                    :key="colIndex"
+                    :data-row="rowIndex"
+                    :data-col="colIndex"
+                    :class="{
                             'c-game-board__cell--sunk': cell.isSunk,
                             'c-game-board__cell--hit': cell.isHit,
                             'c-game-board__cell--miss': cell.isMiss,
                         }"
-                    >
-                        <div class="c-game-board__cell-content">
-                            <span v-if="cell.isSunk" class="c-game-board__cell-symbol c-game-board__cell-symbol--sunk">⚓</span>
-                            <span v-else-if="cell.isHit" class="c-game-board__cell-symbol c-game-board__cell-symbol--hit">💥</span>
-                            <span v-else-if="cell.isMiss" class="c-game-board__cell-symbol c-game-board__cell-symbol--miss">🔴</span>
-                            <span v-else class="c-game-board__cell-symbol">⭕</span>
-                        </div>
-                    </td>
-                </tr>
+                >
+                    <div class="c-game-board__cell-content">
+                        <span v-if="cell.isSunk"
+                              class="c-game-board__cell-symbol c-game-board__cell-symbol--sunk">⚓</span>
+                        <span v-else-if="cell.isHit"
+                              class="c-game-board__cell-symbol c-game-board__cell-symbol--hit">💥</span>
+                        <span v-else-if="cell.isMiss" class="c-game-board__cell-symbol c-game-board__cell-symbol--miss">🔴</span>
+                        <span v-else class="c-game-board__cell-symbol">⭕</span>
+                    </div>
+                </td>
+            </tr>
             </tbody>
         </table>
         <!-- Rocket overlay -->
@@ -41,12 +43,7 @@
 </template>
 
 <script setup lang="ts">
-import {
-    computed,
-    ref,
-    nextTick,
-    watch,
-} from 'vue';
+import { computed, ref, nextTick, watch } from 'vue';
 import { useBoardStore } from '../stores';
 import { COLUMN_COUNT } from '../stores/state/state.board';
 

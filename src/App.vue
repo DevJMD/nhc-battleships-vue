@@ -28,21 +28,14 @@
 </template>
 
 <script lang="ts">
-import {
-    defineComponent,
-    onMounted,
-} from 'vue';
-
+import { defineComponent, onMounted } from 'vue';
 import GameBoard from './components/GameBoard.vue';
 import GameControl from './components/GameControl.vue';
 import ControlHeader from './components/GameControlHeader.vue';
 import GameFeedback from './components/GameFeedback.vue';
 import WinnerOverlay from './components/WinnerOverlay.vue';
 
-import {
-    useBoardStore,
-    useFeedbackStore,
-} from './stores';
+import { useBoardStore, useFeedbackStore } from './stores';
 
 export default defineComponent({
     name: 'App',

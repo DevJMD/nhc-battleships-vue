@@ -8,7 +8,7 @@ export interface ShipPosition {
 }
 
 export interface BoardCell {
-    shipId: number | nulvitwe
+    shipId: number | null;
     isHit: boolean;
     isMiss: boolean;
     isSunk?: boolean;

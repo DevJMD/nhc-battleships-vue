@@ -62,3 +62,9 @@ Test structure:
   - `src/stores/__tests__*.spec.ts`
 - Unit tests are written using Vitest:
   - `src/__tests__*.spec.ts`
+
+### Liniting
+- To lint the code, use the following:
+```bash
+npm run lint
+```

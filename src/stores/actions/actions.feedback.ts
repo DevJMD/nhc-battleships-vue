@@ -1,7 +1,4 @@
-import type {
-    FeedbackMessage,
-    FeedbackState,
-} from '../interface';
+import type { FeedbackMessage, FeedbackState } from '../interface';
 
 /**
  * Adds a message to the feedback state.

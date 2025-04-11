@@ -32,15 +32,8 @@
 </template>
 
 <script setup lang="ts">
-import {
-    onMounted,
-    onUnmounted,
-    ref,
-} from 'vue';
-import {
-    useBoardStore,
-    useFeedbackStore,
-} from '../stores';
+import { onMounted, onUnmounted, ref } from 'vue';
+import { useBoardStore, useFeedbackStore } from '../stores';
 
 const boardStore = useBoardStore();
 const feedbackStore = useFeedbackStore();

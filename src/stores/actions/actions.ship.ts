@@ -1,8 +1,4 @@
-import type {
-    Ship,
-    BoardCell,
-    ShipPosition,
-} from '../interface';
+import type { Ship, BoardCell, ShipPosition } from '../interface';
 
 /**
  * Resets the ship store by clearing the list of ships.
