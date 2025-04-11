@@ -1,10 +1,15 @@
+@use 'sass:math';
+
 //----------------------------------------------------------------------------------------------------------------------
 // Components: Winner Overlay
 //----------------------------------------------------------------------------------------------------------------------
 
-$overlay-background-color: rgba(0, 0, 0, 0.8) !default;
+$overlay-background-color: rgba(0, 0, 0, .8) !default;
 $overlay-text-color: #111 !default;
 $overlay-content-background-color: #fff !default;
+$overlay-button-background-color: #4a90e2 !default;
+$overlay-button-hover-background-color: #357ab8 !default;
+$overlay-button-outline-color: 2px solid rgba(74, 144, 226, .5) !default;
 
 .c-overlay {
     position: fixed;
@@ -22,37 +27,39 @@ $overlay-content-background-color: #fff !default;
 .c-overlay__content {
     background-color: $overlay-content-background-color;
     color: $overlay-text-color;
-    padding: 20px;
-    border-radius: 8px;
+    padding: $global-spacing-unit;
+    border-radius: math.div($global-spacing-unit, 2);
     text-align: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
     max-width: 90%;
-    width: 400px;
+    width: 420px;
+
+    @include mq(mobile, tablet) {
+        width: 100%;
+    }
 }
 
 .c-overlay__emoji {
     font-size: 3rem;
-    margin-bottom: 10px;
+    margin-bottom: math.div($global-spacing-unit, 2);
 }
 
 .c-overlay__message {
     font-size: 1rem;
-    margin-bottom: 20px;
+    margin-bottom: $global-spacing-unit;
 }
 
 .c-overlay__button {
-    padding: 10px 20px;
+    padding: math.div($global-spacing-unit, 2) $global-spacing-unit;
     font-size: 1rem;
-    background-color: #4a90e2;
-    color: #fff;
+    background-color: $overlay-button-background-color;
+    color: $color-white;
     border: none;
-    border-radius: 4px;
+    border-radius: math.div($global-spacing-unit, 4);
     cursor: pointer;
     transition: background-color 0.3s;
 }
 
-.c-overlay__button:focus,
-.c-overlay__button:hover {
-    background-color: #357ab8;
-    outline: 2px solid rgba(74, 144, 226, 0.5);
+@include pocus {
+    background-color: $overlay-button-hover-background-color;
+    outline: $overlay-button-outline-color;
 }
