@@ -52,14 +52,19 @@ onMounted(() => {
 });
 
 /**
- * Handles the letter input and ensures it is uppercase.
+ * Converts the letter input to uppercase.
+ *
+ * @returns {void}
  */
 const onLetterInput = (): void => {
     letterInput.value = letterInput.value.toUpperCase();
 };
 
 /**
- * Moves focus to the number input when a letter is typed.
+ * Handles the behavior when the letter input is filled.
+ * If the letter input is filled, focus on the number input.
+ *
+ * @returns {void}
  */
 const onLetterKeyup = (): void => {
     if (letterInput.value.length === 1) {
@@ -69,6 +74,12 @@ const onLetterKeyup = (): void => {
 
 /**
  * Handles backspace behavior in the number input.
+ *
+ * If the backspace key is pressed and the number input is empty,
+ * focus back on the letter input
+ *
+ * @param {KeyboardEvent} event - The keyboard event.
+ * @returns {void}
  */
 const onNumberKeydown = (event: KeyboardEvent): void => {
     if (event.key === 'Backspace' && !numberInput.value) {
@@ -80,10 +91,17 @@ const onNumberKeydown = (event: KeyboardEvent): void => {
 /**
  * Fires a shot at the coordinate entered by the player.
  *
+ * 1. Checks if the letter and number inputs are empty.
+ *    If they are, it resets the inputs and focuses on the letter input.
+ * 2. Combines the letter and number inputs into a single string.
+ * 3. Calls the `processInput` method from the board store to process the input.
+ * 4. Resets the input fields.
+ * 5. Focuses the letter input again.
+ *
  * @returns {void}
  */
 const fireShot = (): void => {
-    // Straight up reject empty inputs.
+    /* [1] */
     if (!letterInput.value || !numberInput.value) {
         letterInput.value = '';
         numberInput.value = '';
@@ -93,17 +111,17 @@ const fireShot = (): void => {
         return;
     }
 
-    // Combine the letter and number inputs into a single string.
+    /* [2] */
     const combinedInput = `${letterInput.value.toUpperCase()}${numberInput.value}`;
 
-    // Check if the input is valid.
+    /* [3] */
     boardStore.processInput(combinedInput);
 
-    // Reset the input fields.
+    /* [4] */
     letterInput.value = '';
     numberInput.value = '';
 
-    // Focus the letter input again.
+    /* [5] */
     letterField.value?.focus();
 };
 </script>
