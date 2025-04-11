@@ -42,18 +42,38 @@ export const useFeedbackStore: StoreDefinition = defineStore('feedbackStore', {
      * @returns {Object} The functions.
      */
     getters: {
+        /**
+         * Get the messages in the feedback store.
+         *
+         * @returns {FeedbackMessage[]}
+         */
         getMessages(): FeedbackMessage[] {
             return this.messages;
         },
 
+        /**
+         * Get the last message in the feedback store.
+         *
+         * @returns {FeedbackMessage | null}
+         */
         getMessageCount(): number {
             return this.messages.length;
         },
 
+        /**
+         * Get the first message in the feedback store.
+         *
+         * @returns {FeedbackMessage | null}
+         */
         getFirstMessage(): FeedbackMessage | null {
             return this.messages.length > 0 ? this.messages[this.messages.length - 1] : null;
         },
 
+        /**
+         * Get the last message in the feedback store.
+         *
+         * @returns {FeedbackMessage | null}
+         */
         getLastMessage(): FeedbackMessage | null {
             return this.messages.length > 0 ? this.messages[0] : null;
         },
