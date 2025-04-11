@@ -1,32 +1,64 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue';
-</script>
-
 <template>
-    <div>
-        <a href="https://vite.dev" target="_blank">
-            <img src="/vite.svg" class="logo" alt="Vite logo"/>
-        </a>
-        <a href="https://vuejs.org/" target="_blank">
-            <img src="./assets/vue.svg" class="logo vue" alt="Vue logo"/>
-        </a>
+    <div id="app" class="c-app">
+        <!-- Main container -->
+        <div class="c-app__container" role="main">
+            <!-- Left Panel: Header, Controls, Feedback -->
+            <div class="c-app__panel">
+                <!-- Header -->
+                <Header />
+                <!-- Game controls -->
+                <Controls/>
+                <!-- Game feedback -->
+                <Feedback :messages="feedbackStore.messages"/>
+            </div>
+
+            <!-- Right Panel: Board and winner overlay -->
+            <div class="c-app__board">
+                <!-- Game board -->
+                <Board :board="boardStore.board"/>
+                <!-- Winner overlay -->
+                <WinnerOverlay
+                    v-if="boardStore.gameOver"
+                    :winner="boardStore.winner"
+                    @restartGame="boardStore.initGame"
+                />
+            </div>
+        </div>
     </div>
-    <HelloWorld msg="Vite + Vue"/>
 </template>
 
-<style scoped>
-.logo {
-    height: 6em;
-    padding: 1.5em;
-    will-change: filter;
-    transition: filter 300ms;
-}
+<script lang="ts">
+import {
+    defineComponent,
+    onMounted,
+} from 'vue';
 
-.logo:hover {
-    filter: drop-shadow(0 0 2em #646cffaa);
-}
+import Board         from './components/Board.vue';
+import Controls      from './components/Controls.vue';
+import Header        from './components/Header.vue';
+import WinnerOverlay from './components/WinnerOverlay.vue';
+import Feedback      from './components/Feedback.vue';
 
-.logo.vue:hover {
-    filter: drop-shadow(0 0 2em #42b883aa);
-}
-</style>
+import {
+    useBoardStore,
+    useFeedbackStore,
+} from './stores';
+
+export default defineComponent({
+    name: 'App',
+    components: { Header, WinnerOverlay, Board, Controls, Feedback },
+    setup() {
+        const boardStore = useBoardStore();
+        const feedbackStore = useFeedbackStore();
+
+        onMounted(() => {
+            boardStore.initGame();
+        });
+
+        return {
+            boardStore,
+            feedbackStore,
+        };
+    },
+});
+</script>
