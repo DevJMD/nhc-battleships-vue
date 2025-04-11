@@ -15,7 +15,6 @@
                     placeholder="e.g. A"
                     @input="onLetterInput"
                     @keyup="onLetterKeyup"
-                    @focusin="onLetterFocus"
                 />
                 <input
                     type="number"
