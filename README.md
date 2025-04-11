@@ -1,5 +1,38 @@
-# Vue 3 + TypeScript + Vite
+# NHC Battleships
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+## Description
+A demonstration of a simple battleship game using TypeScript and Vue.
 
-Learn more about the recommended Project Setup and IDE Support in the [Vue Docs TypeScript Guide](https://vuejs.org/guide/typescript/overview.html#project-setup).
+## Spec
+- The game is played on a 10x10 grid.
+
+# Development
+- Clone the repository
+- Install dependencies
+```bash
+npm install
+```
+- Run the development app
+```bash
+npm run dev
+```
+- Open the app in your browser at `http://localhost:5173/`
+
+## Build
+- To build the app for production, use the following:
+```bash
+npm run build
+```
+- Build files will be generated in the `dist` directory.
+
+### Testing
+- To run the tests, use the following:
+```bash
+npm run test
+```
+
+Test structure:
+- States are tested using Vitest:
+  - `src/stores/__tests__*.spec.ts`
+- Unit tests are written using Vitest:
+  - `src/__tests__*.spec.ts`
