@@ -44,6 +44,11 @@ $feedback-message--sunk-color: #d7e2f6 !default;
         max-height: 100%;
     }
 
+    &__list {
+        margin: 0;
+        list-style-type: none;
+    }
+
     &__message {
         margin-bottom: $feedback-message-item-spacing;
         padding: $feedback-message-padding;

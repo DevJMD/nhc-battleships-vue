@@ -9,14 +9,17 @@
                 Feedback messages are displayed here.
                 There a different types of messages that change the style.
             -->
-            <p
-                v-for="(message, index) in messages"
-                :key="index"
-                class="c-feedback__message"
-                :class="`c-feedback__message--${message.type}`"
-            >
-                {{ message.text }}
-            </p>
+            <ul class="c-feedback__list" role="list">
+                <li
+                    v-for="(message, index) in messages"
+                    :key="index"
+                    class="c-feedback__message"
+                    :class="`c-feedback__message--${message.type}`"
+                    :aria-live="message.type === 'invalid-input' ? 'assertive' : 'polite'"
+                >
+                    {{ message.text }}
+                </li>
+            </ul>
         </div>
         <div v-else>
             <!--
