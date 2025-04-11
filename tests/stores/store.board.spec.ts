@@ -32,7 +32,7 @@ describe('Board Store', () => {
         expect(ships.length).toBe(3);
 
         expect(messageToCheck.text).toContain(formatString(
-            '🚀 Game started! Enter a coordinate (you can type anywhere from A1 to %s%s) to fire at a ship.',
+            '🚀 Game started! Enter a coordinate (you can type anywhere from A1 to J10) to fire at a ship.',
             boardStore.getMaxRowLetter,
             boardStore.getMaxRowNumber,
         ));

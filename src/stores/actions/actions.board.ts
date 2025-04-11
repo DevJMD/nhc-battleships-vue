@@ -182,7 +182,6 @@ export const initGameAction = (state: BoardState): void => {
 
     // Reset game state.
     state.gameOver = false;
-    state.playerInput = '';
 
     // Clear any previous messages in the feedback store.
     const feedbackStore = useFeedbackStore();
@@ -213,7 +212,7 @@ export const initGameAction = (state: BoardState): void => {
     // Let the player know the game has started.
     feedbackStore.addMessage({
         type: 'game-started',
-        text: formatString(GAME_MESSAGES.GAME_STARTED, validColumns.slice(-1), ROW_COUNT),
+        text: formatString(GAME_MESSAGES.GAME_STARTED, validColumns.slice(-1), ROW_COUNT.toString()),
     });
 };
 

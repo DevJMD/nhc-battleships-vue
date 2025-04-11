@@ -175,6 +175,6 @@ describe('App.vue', () => {
         // Check the messages only show the intro message
         const feedbackMessages: DOMWrapper<Element> = wrapper.find('.c-feedback__message');
         expect(feedbackMessages.text()).toContain(
-            '🚀 Game started! Enter a coordinate (you can type anywhere from A1 to J) to fire at a ship.');
+            '🚀 Game started! Enter a coordinate (you can type anywhere from A1 to J10) to fire at a ship.');
     });
 });

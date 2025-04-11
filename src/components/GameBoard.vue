@@ -45,6 +45,7 @@
 <script setup lang="ts">
 import { computed, ref, nextTick, watch } from 'vue';
 import { useBoardStore } from '../stores';
+import type { BoardCell } from '../stores/interface';
 import { COLUMN_COUNT } from '../stores/state/state.board';
 
 const boardStore = useBoardStore();
@@ -143,7 +144,7 @@ watch(
 
             // Delay a tick to ensure the DOM is updated.
             nextTick(() => {
-                animateRocket(shot.row, shot.col, shot.result);
+                animateRocket(shot.row, shot.col);
             });
         }
     },
@@ -151,7 +152,7 @@ watch(
 
 defineProps({
     board: {
-        type: Array as () => number[][],
+        type: Array as () => BoardCell[][],
         required: true,
     },
 });
