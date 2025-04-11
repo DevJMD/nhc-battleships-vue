@@ -60,7 +60,6 @@ const boardStore = useBoardStore();
 
 // Computed properties
 const maxRowCount = computed(() => boardStore.getMaxColumnLength);
-const isNumberInputNegative = computed(() => numberInput.value.includes('-'));
 const combinedInput = computed(() => `${letterInput.value.toUpperCase()}${numberInput.value}`);
 
 // On mounted lifecycle hook
@@ -111,7 +110,7 @@ const onNumberFocus = (): void => {
 const onNumberKeyUp = (event: KeyboardEvent): void => {
     const rawValue = numberField.value?.value || '';
 
-    if (isNumberInputNegative) {
+    if (rawValue.includes('-')) {
         numberInput.value = (numberField.value!.value = rawValue.replace('-', ''));
     }
 
