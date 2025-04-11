@@ -8,6 +8,15 @@ A demonstration of a simple battleship game using TypeScript and Vue.
 
 # Development
 - Clone the repository
+- Create a `.env.local` file in the root directory
+```bash
+cp .env.local.example .env.local
+```
+It must contain:
+```bash
+VITE_BS_ROW_COUNT=10
+VITE_BS_COLUMN_COUNT=10
+```
 - Install dependencies
 ```bash
 npm install
