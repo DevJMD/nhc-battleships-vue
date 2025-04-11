@@ -4,8 +4,8 @@
 // Components: Controls
 //----------------------------------------------------------------------------------------------------------------------
 
-$controls-fire-button-background-color: $color-white !default;
-$controls-fire-button-color: $color-black !default;
+$controls-fire-button-background-color: #d52323 !default;
+$controls-fire-button-color: $color-white !default;
 $controls-fire-button-border: 1px solid #444 !default;
 $controls-fire-button-border-radius: math.div($global-spacing-unit, 2) !default;
 $controls-fire-button-pocus-background-color: #c42727 !default;
@@ -48,8 +48,6 @@ $controls-fire-button-pocus-color: #f1c5c5 !default;
         color: $controls-fire-button-color;
         font-weight: bold;
         border: $controls-fire-button-border;
-        border-bottom-left-radius: $controls-fire-button-border-radius;
-        border-bottom-right-radius: $controls-fire-button-border-radius;
         transition: color .12s ease-in-out, background-color .21s ease-in-out;
 
         @include pocus {
@@ -57,4 +55,9 @@ $controls-fire-button-pocus-color: #f1c5c5 !default;
             color: $controls-fire-button-pocus-color;
         }
     }
+}
+
+.c-controls__fieldset--inputs {
+    display: flex;
+    align-items: center;
 }
