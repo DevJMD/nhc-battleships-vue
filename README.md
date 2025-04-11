@@ -78,4 +78,6 @@ npm run lint
     - Testing could be improved by adding more tests for ship placement logic
     - SASS coupling might be a better design choice/option - keeping it DRY.
     - Seperation of concerns could be improved by moving some game logic into services.
+    - Error handling could be entirely removed from the game logic and moved to its own logic.
+    - Better error handling all around.
 
