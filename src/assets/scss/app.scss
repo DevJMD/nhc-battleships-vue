@@ -1,0 +1,116 @@
+@use 'sass:math';
+
+//----------------------------------------------------------------------------------------------------------------------
+// Battleships
+//----------------------------------------------------------------------------------------------------------------------
+//
+// A simple game of Battleships using Vue3 (Typescript), Pinia for state management, and SCSS for styling.
+//
+//----------------------------------------------------------------------------------------------
+// @author    James Martin-Davies <@devjmd>
+//----------------------------------------------------------------------------------------------
+
+//----------------------------------------------------------------------------------------------
+// Settings
+//----------------------------------------------------------------------------------------------
+
+$global-font-size: 16px;
+
+@import '@devjmd/frontend/scss/settings/settings.config';
+@import '@devjmd/frontend/scss/settings/settings.core';
+@import '@devjmd/frontend/scss/settings/settings.global';
+
+//----------------------------------------------------------------------------------------------
+// Tools
+//----------------------------------------------------------------------------------------------
+
+@import '@devjmd/frontend/scss/tools/tools.font-size';
+@import '@devjmd/frontend/scss/tools/tools.clearfix';
+@import '@devjmd/frontend/scss/tools/tools.hidden';
+@import '@devjmd/frontend/scss/tools/tools.pocus';
+@import '@devjmd/frontend/scss/tools/tools.scrollbar';
+@import '@devjmd/frontend/scss/media-queries/media-queries.mq';
+
+//----------------------------------------------------------------------------------------------
+// Generic
+//----------------------------------------------------------------------------------------------
+
+@import '@devjmd/frontend/scss/generic/generic.box-sizing';
+@import '@devjmd/frontend/scss/generic/generic.normalize';
+@import '@devjmd/frontend/scss/generic/generic.reset';
+@import '@devjmd/frontend/scss/generic/generic.shared';
+
+//----------------------------------------------------------------------------------------------
+// Elements
+//----------------------------------------------------------------------------------------------
+
+@import '@devjmd/frontend/scss/elements/elements.page';
+@import '@devjmd/frontend/scss/elements/elements.anchors';
+@import '@devjmd/frontend/scss/elements/elements.headings';
+@import '@devjmd/frontend/scss/elements/elements.images';
+@import '@devjmd/frontend/scss/elements/elements.tables';
+@import '@devjmd/frontend/scss/elements/elements.form';
+
+html,
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+//----------------------------------------------------------------------------------------------
+// Objects
+//----------------------------------------------------------------------------------------------
+
+
+@import '@devjmd/frontend/scss/objects/objects.band';
+@import '@devjmd/frontend/scss/objects/objects.wrapper';
+@import '@devjmd/frontend/scss/objects/objects.media';
+@import '@devjmd/frontend/scss/objects/objects.flag';
+@import '@devjmd/frontend/scss/objects/objects.list-bare';
+@import '@devjmd/frontend/scss/objects/objects.list-inline';
+@import '@devjmd/frontend/scss/objects/objects.box';
+@import '@devjmd/frontend/scss/objects/objects.grid';
+@import '@devjmd/frontend/scss/objects/objects.block';
+@import '@devjmd/frontend/scss/objects/objects.ratio';
+@import '@devjmd/frontend/scss/objects/objects.crop';
+@import '@devjmd/frontend/scss/objects/objects.table';
+@import '@devjmd/frontend/scss/objects/objects.pack';
+
+//----------------------------------------------------------------------------------------------
+// Components
+//----------------------------------------------------------------------------------------------
+
+@import 'components/components.app';
+@import 'components/components.grid-wrapper';
+@import 'components/components.feedback';
+@import 'components/components.game-board';
+@import 'components/components.controls';
+@import 'components/components.winner-overlay';
+
+@keyframes revealEmoji {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.rocket {
+    pointer-events: none;
+    font-size: 2rem;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    will-change: transform;
+}
+
+//----------------------------------------------------------------------------------------------
+// Utilities
+//----------------------------------------------------------------------------------------------
+
+@import '@devjmd/frontend/scss/utilities/utilities.clearfix';
+@import '@devjmd/frontend/scss/utilities/utilities.widths';
+@import '@devjmd/frontend/scss/utilities/utilities.headings';
+@import '@devjmd/frontend/scss/utilities/utilities.spacings';
+@import '@devjmd/frontend/scss/utilities/utilities.responsive-spacings';
+@import '@devjmd/frontend/scss/utilities/utilities.print';
+@import '@devjmd/frontend/scss/utilities/utilities.hide';

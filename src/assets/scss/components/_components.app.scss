@@ -1,0 +1,122 @@
+@use 'sass:math';
+
+//----------------------------------------------------------------------------------------------------------------------
+// Components: App
+//----------------------------------------------------------------------------------------------------------------------
+
+$app-background-color: #1e1e2d !default;
+$app-text-color: #e0e0e0 !default;
+$app-panel-size: 400px !default;
+$app-panel-max-height: 350px !default;
+$app-panel-background-color: #2c2c3a !default;
+
+/*
+ * App layout
+ *
+ * [1] Make the height of the panel 100vh minus the header height
+ * [2] Use flexbox to create a column layout
+ */
+.c-app {
+    height: 100vh; /* [1] */
+    display: flex;
+    flex-direction: column; /* [2] */
+    background-color: $app-panel-background-color;
+    color: $app-text-color;
+    overflow: hidden;
+
+    /**
+     * Header title
+     *
+     * [1] Scale down the font size on mobile and tablet
+     */
+    &__header-title {
+        margin-bottom: $spacing;
+
+        @include font-size(24px);
+
+        /* [1] */
+        @include mq(mobile, tablet) {
+
+            @include font-size(16px);
+
+            margin-bottom: math.div($spacing, 2);
+        }
+    }
+
+    /*
+     * Container
+     *
+     * [1] Use flexbox to create a row layout
+     * [2] Flex the container to take up the remaining space, set direction to row
+     */
+    &__container {
+        flex: 1;
+        display: flex; /* [1] */
+        flex-direction: row; /* [2] */
+        overflow: hidden;
+    }
+
+    /*
+     * Panel
+     * The panel is on the left side of the game.
+     *
+     * [1] Flex for the layout
+     * [2] Use column layout to stack them side by side
+     */
+    &__panel {
+        flex: 0 0 $app-panel-size; /* [1] */
+        padding: $spacing;
+        box-sizing: border-box;
+        background-color: $app-panel-background-color;
+        overflow-y: auto;
+        display: flex;
+        flex-direction: column; /* [2] */
+
+        @include mq(mobile, tablet) {
+            flex: 0 0 auto;
+            width: 100%;
+            max-height: $app-panel-max-height;
+            padding: math.div($spacing, 2);
+            overflow: hidden;
+        }
+    }
+
+    &__description {
+        margin-bottom: 20px;
+        font-size: 1rem;
+    }
+
+    /*
+     * Responsive layout
+     *
+     * [1] Change the column order of the panel and board
+     *     This will place the panel below the board after the <1200px breakpoint
+     */
+    @include mq(1px, 1200px) {
+        &__container {
+            flex-direction: column;
+        }
+
+        &__panel {
+            flex: 0 0 auto;
+            width: 100%;
+            order: 2; /* [1] */
+            max-height: $app-panel-max-height;
+        }
+
+        &__board {
+            order: 1; /* [1] */
+            flex: 1;
+            width: 100%;
+        }
+    }
+
+    &__reset-game {
+        float: right;
+        text-decoration: none;
+
+        @include pocus {
+            transform: scale(1.1);
+        }
+    }
+}

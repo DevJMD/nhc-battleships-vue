@@ -1,0 +1,84 @@
+@use 'sass:math';
+
+//----------------------------------------------------------------------------------------------------------------------
+// Components: Feedback
+//----------------------------------------------------------------------------------------------------------------------
+
+$feedback-background-color: #2c2c3a !default;
+$feedback-border: 1px solid #444 !default;
+$feedback-border-radius: 4px !default;
+$feedback-padding: math.div($global-spacing-unit, 2) !default;
+$feedback-max-height: 150px !default;
+$feedback-min-height: $global-spacing-unit * 2 !default;
+
+$feedback-message-background-color: #3a3a4e !default;
+$feedback-message-color: #e0e0e0 !default;
+$feedback-message-border-radius: $feedback-border-radius !default;
+$feedback-message-padding: math.div($global-spacing-unit, 4) math.div($global-spacing-unit, 2) !default;
+$feedback-message-item-spacing: math.div($global-spacing-unit, 4) !default;
+
+$feedback-message--already-fired-background-color: #4f1324 !default;
+$feedback-message--already-fired-color: #e0e0e0 !default;
+$feedback-message--invalid-input-background-color: #4f1324 !default;
+$feedback-message--invalid-input-color: #e0e0e0 !default;
+$feedback-message--miss-background-color: #3c4d57 !default;
+$feedback-message--miss-color: #a7aab7 !default;
+$feedback-message--hit-background-color: #397343 !default;
+$feedback-message--hit-color: #d4edda !default;
+$feedback-message--sunk-background-color: #2932e5 !default;
+$feedback-message--sunk-color: #d7e2f6 !default;
+
+.c-feedback {
+    margin-bottom: 0 !important;
+    padding: $feedback-padding;
+    background-color: $feedback-background-color;
+    border: $feedback-border;
+    border-radius: $feedback-border-radius;
+    max-height: $feedback-max-height;
+    overflow-y: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    width: 100%;
+    min-height: $feedback-min-height;
+
+    @include mq(tablet) {
+        max-height: 100%;
+    }
+
+    &__message {
+        margin-bottom: $feedback-message-item-spacing;
+        padding: $feedback-message-padding;
+        border-radius: $feedback-message-border-radius;
+        background-color: $feedback-message-background-color;
+        color: $feedback-message-color;
+        transition: background-color 0.3s;
+
+        @include font-size(14px, 1.22);
+
+        &--already-fired {
+            background-color: $feedback-message--already-fired-background-color !important;
+            color: $feedback-message--already-fired-color !important;
+        }
+
+        &--invalid-input {
+            background-color: $feedback-message--invalid-input-background-color !important;
+            color: $feedback-message--invalid-input-color !important;
+        }
+
+        &--miss {
+            background-color: $feedback-message--miss-background-color !important;
+            color: $feedback-message--miss-color !important;
+        }
+
+        &--hit {
+            background-color: $feedback-message--hit-background-color !important;
+            color: $feedback-message--hit-color !important;
+            font-weight: bold !important;
+        }
+
+        &--sunk {
+            background-color: $feedback-message--sunk-background-color !important;
+            color: $feedback-message--sunk-color !important;
+            font-weight: bold !important;
+        }
+    }
+}

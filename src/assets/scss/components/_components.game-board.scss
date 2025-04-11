@@ -1,0 +1,102 @@
+@use 'sass:math';
+
+//----------------------------------------------------------------------------------------------------------------------
+// Components: Game Board
+//----------------------------------------------------------------------------------------------------------------------
+
+$game-board-background-color: #2c2c3a !default;
+$game-board-header-background-color: #3a3a4e !default;
+$game-board-cell-border: 1px solid #444 !default;
+$game-board-header-color: #e0e0e0 !default;
+$game-board-cell-symbol--hit-background-color: #19412a !default;
+$game-board-cell-symbol--miss-background-color: #3a3a4e !default;
+$game-board-cell-symbol--sunk-background-color: #36369f !default;
+
+.c-game-board {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    table-layout: fixed;
+    border-collapse: collapse;
+    background-color: $game-board-background-color;
+    will-change: contents;
+
+    &__header {
+        background-color: $game-board-header-background-color;
+    }
+
+    &__header-cell,
+    &__row-header {
+        padding: math.div($global-spacing-unit, 2);
+        border: $game-board-cell-border;
+        text-align: center;
+        font-weight: bold;
+        color: $game-board-header-color;
+    }
+
+    &__cell {
+        position: relative;
+        padding: 0;
+        border: $game-board-cell-border;
+    }
+
+    &__content {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+    }
+
+    &__cell-symbol {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include mq(1920px) {
+            @include font-size(48px);
+        }
+
+        @include mq(tablet, 1919px) {
+            @include font-size(21px);
+        }
+
+        @include mq(mobile, tablet) {
+            @include font-size(12px);
+        }
+    }
+
+    &__cell {
+        opacity: .33;
+        will-change: contents;
+
+        &--hit {
+            background-color: $game-board-cell-symbol--hit-background-color !important;
+            opacity: 1;
+        }
+
+        &--miss {
+            background-color: $game-board-cell-symbol--miss-background-color !important;
+            opacity: 1;
+        }
+
+        &--sunk {
+            background-color: $game-board-cell-symbol--sunk-background-color !important;
+            opacity: 1;
+        }
+    }
+}
+
+
+.c-game-board__cell--hit,
+.c-game-board__cell--miss,
+.c-game-board__cell--sunk {
+    opacity: 0;
+    animation: revealEmoji 0.3s ease-out forwards;
+    animation-delay: 1s;
+
+    @include mq(desktop) {
+        @include font-size(32px);
+    }
+}

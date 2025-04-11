@@ -1,0 +1,58 @@
+//----------------------------------------------------------------------------------------------------------------------
+// Components: Winner Overlay
+//----------------------------------------------------------------------------------------------------------------------
+
+$overlay-background-color: rgba(0, 0, 0, 0.8) !default;
+$overlay-text-color: #111 !default;
+$overlay-content-background-color: #fff !default;
+
+.c-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: $overlay-background-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.c-overlay__content {
+    background-color: $overlay-content-background-color;
+    color: $overlay-text-color;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    max-width: 90%;
+    width: 400px;
+}
+
+.c-overlay__emoji {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.c-overlay__message {
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.c-overlay__button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    background-color: #4a90e2;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.c-overlay__button:focus,
+.c-overlay__button:hover {
+    background-color: #357ab8;
+    outline: 2px solid rgba(74, 144, 226, 0.5);
+}
