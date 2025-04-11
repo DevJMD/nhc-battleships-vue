@@ -72,7 +72,7 @@ const rocketStyle = ref<Record<string, string>>({});
  * @param {'hit' | 'miss'} result
  * @return {void}
  */
-function animateRocket(row: number, col: number, result: 'hit' | 'miss'): void {
+function animateRocket(row: number, col: number): void {
     if (!gridWrapper.value) return;
 
     const wrapperRect = gridWrapper.value.getBoundingClientRect();

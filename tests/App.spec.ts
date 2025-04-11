@@ -1,21 +1,9 @@
-import {
-    describe,
-    it,
-    expect,
-    beforeEach,
-}                      from 'vitest';
-import {
-    mount,
-    flushPromises,
-    DOMWrapper,
-}                      from '@vue/test-utils';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { mount, flushPromises, DOMWrapper } from '@vue/test-utils';
 import { createPinia } from 'pinia';
 
 import App from '../src/App.vue';
-import {
-    useBoardStore,
-    useShipStore,
-}          from '../src/stores';
+import { useBoardStore, useShipStore } from '../src/stores';
 
 describe('App.vue', () => {
     let wrapper: ReturnType<typeof mount>;
@@ -67,7 +55,7 @@ describe('App.vue', () => {
         expect(feedback.exists()).toBe(true);
     });
 
-    it('allows firing a shot and updates board and recieving feedback', async () => {
+    it('allows firing a shot and updates board, recieving feedback', async () => {
         await flushPromises();
 
         const input: DOMWrapper<Element> = wrapper.find('.c-controls__input');
@@ -86,7 +74,8 @@ describe('App.vue', () => {
         const firstGridRow: DOMWrapper<Element> = wrapper.find('.c-game-board__cell');
         const firstGridCell: DOMWrapper<Element> = firstGridRow.find('.c-game-board__cell-content');
 
-        expect(firstGridCell.text()).toMatch(/[🔴⭕💥]/);
+        // Match one of three emojis
+        expect(firstGridCell.text()).toMatch(/💥|⭕|🔴/);
     });
 
     it('allows hitting a ship at a specific position', async () => {

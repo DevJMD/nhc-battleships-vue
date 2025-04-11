@@ -5,17 +5,17 @@
             <!-- Left Panel: Header, Controls, Feedback -->
             <div class="c-app__panel">
                 <!-- Header -->
-                <Header />
+                <ControlHeader/>
                 <!-- Game controls -->
-                <Controls/>
+                <GameControl/>
                 <!-- Game feedback -->
-                <Feedback :messages="feedbackStore.messages"/>
+                <GameFeedback :messages="feedbackStore.messages"/>
             </div>
 
             <!-- Right Panel: Board and winner overlay -->
             <div class="c-app__board">
                 <!-- Game board -->
-                <Board :board="boardStore.board"/>
+                <GameBoard :board="boardStore.board"/>
                 <!-- Winner overlay -->
                 <WinnerOverlay
                     v-if="boardStore.gameOver"
@@ -33,11 +33,11 @@ import {
     onMounted,
 } from 'vue';
 
-import Board         from './components/Board.vue';
-import Controls      from './components/Controls.vue';
-import Header        from './components/Header.vue';
+import GameBoard from './components/GameBoard.vue';
+import GameControl from './components/GameControl.vue';
+import ControlHeader from './components/GameControlHeader.vue';
+import GameFeedback from './components/GameFeedback.vue';
 import WinnerOverlay from './components/WinnerOverlay.vue';
-import Feedback      from './components/Feedback.vue';
 
 import {
     useBoardStore,
@@ -46,7 +46,7 @@ import {
 
 export default defineComponent({
     name: 'App',
-    components: { Header, WinnerOverlay, Board, Controls, Feedback },
+    components: { GameFeedback, ControlHeader, WinnerOverlay, GameBoard, GameControl },
     setup() {
         const boardStore = useBoardStore();
         const feedbackStore = useFeedbackStore();

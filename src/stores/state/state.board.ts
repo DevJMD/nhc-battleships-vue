@@ -1,7 +1,4 @@
-import type {
-    BoardCell,
-    BoardState,
-} from '../interface';
+import type { BoardCell, BoardState } from '../interface';
 
 const envRowCount = Number(import.meta.env.VITE_BS_ROW_COUNT) || 8;
 const envColumnCount = Number(import.meta.env.VITE_BS_COLUMN_COUNT) || 8;

@@ -2,11 +2,11 @@
 import { defineStore } from 'pinia';
 
 // Types
-import type { StoreDefinition }                from 'pinia';
+import type { StoreDefinition } from 'pinia';
 import type { FeedbackMessage, FeedbackState } from '../interface';
 
 // State
-import { createFeedbackState }                   from '../state/state.feedback';
+import { createFeedbackState } from '../state/state.feedback';
 import { addMessageAction, clearMessagesAction } from '../actions/actions.feedback';
 
 export const useFeedbackStore: StoreDefinition = defineStore('feedbackStore', {
@@ -25,7 +25,7 @@ export const useFeedbackStore: StoreDefinition = defineStore('feedbackStore', {
     actions: {
         addMessage(message: FeedbackMessage) {
             if (!message.text || !message.type) {
-               return;
+                return;
             }
 
             return addMessageAction(this, { ...message });
@@ -77,5 +77,5 @@ export const useFeedbackStore: StoreDefinition = defineStore('feedbackStore', {
         getLastMessage(): FeedbackMessage | null {
             return this.messages.length > 0 ? this.messages[0] : null;
         },
-    }
+    },
 });

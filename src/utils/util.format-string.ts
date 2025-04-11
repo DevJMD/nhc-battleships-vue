@@ -5,7 +5,7 @@
  * @param args
  * @returns {string}
  */
-const formatString = (str: string, ...args: any[]): string => {
+const formatString = (str: string, ...args: string[]): string => {
     if (!str) {
         return str;
     }

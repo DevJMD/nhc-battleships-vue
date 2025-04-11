@@ -1,25 +1,8 @@
-import {
-    describe,
-    it,
-    expect,
-    beforeEach,
-}                        from 'vitest';
-import {
-    setActivePinia,
-    createPinia,
-}                        from 'pinia';
-import { GAME_MESSAGES } from '../../src/constants';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { setActivePinia, createPinia } from 'pinia';
 
-import {
-    useBoardStore,
-    useShipStore,
-    useFeedbackStore,
-}                   from '../../src/stores';
-import {
-    FeedbackMessage,
-    Ship,
-    ShipPosition,
-}                   from '../../src/stores/interface';
+import { useBoardStore, useShipStore, useFeedbackStore } from '../../src/stores';
+import { FeedbackMessage, Ship, ShipPosition } from '../../src/stores/interface';
 import formatString from '../../src/utils/util.format-string';
 
 
@@ -49,7 +32,9 @@ describe('Board Store', () => {
         expect(ships.length).toBe(3);
 
         expect(messageToCheck.text).toContain(formatString(
-            GAME_MESSAGES.GAME_STARTED, boardStore.getMaxRowLetter, boardStore.getMaxRowNumber,
+            '🚀 Game started! Enter a coordinate (you can type anywhere from A1 to %s%s) to fire at a ship.',
+            boardStore.getMaxRowLetter,
+            boardStore.getMaxRowNumber,
         ));
     });
 
@@ -67,7 +52,7 @@ describe('Board Store', () => {
         expect(boardStore.board[firstPos.row][firstPos.col].isHit).toBe(true);
 
         expect(feedbackStore.messages.find((msg) => {
-            return msg.text === formatString(GAME_MESSAGES.SHIP_HIT, 'A ship', input);
+            return msg.text === formatString('%s was a hit at %s!', 'A ship', input);
         }))
             .toBeDefined();
     });
@@ -81,7 +66,7 @@ describe('Board Store', () => {
         const getMessage: FeedbackMessage = feedbackStore.messages[0];
 
         expect(getMessage.text).toContain(formatString(
-            GAME_MESSAGES.COORDINATE_OUT_OF_BOUNDS,
+            'Invalid coordinate. Please enter a valid coordinate between A1 and %s.',
             maxInput,
         ));
     });
@@ -100,6 +85,6 @@ describe('Board Store', () => {
         const firstMessage: FeedbackMessage = feedbackStore.messages[0];
 
         expect(feedbackStore.messages.length).toBeGreaterThan(initialMessageCount);
-        expect(firstMessage.text).toContain(GAME_MESSAGES.COORDINATE_ALREADY_FIRED);
+        expect(firstMessage.text).toContain('You\'ve already fired at that coordinate.');
     });
 });

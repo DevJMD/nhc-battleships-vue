@@ -3,15 +3,11 @@ import { defineStore } from 'pinia';
 
 // Types
 import type { StoreDefinition } from 'pinia';
-import type { BoardState }      from '../interface';
+import type { BoardState } from '../interface';
 
 // State
 import { createBoardState } from '../state/state.board';
-import {
-    processInputAction,
-    initGameAction,
-    clearLastShotAction,
-} from '../actions/actions.board';
+import { processInputAction, initGameAction, clearLastShotAction } from '../actions/actions.board';
 
 export const useBoardStore: StoreDefinition = defineStore('boardStore', {
     /**
@@ -48,7 +44,7 @@ export const useBoardStore: StoreDefinition = defineStore('boardStore', {
          */
         clearLastShot() {
             return clearLastShotAction(this);
-        }
+        },
     },
 
     /**
@@ -60,7 +56,7 @@ export const useBoardStore: StoreDefinition = defineStore('boardStore', {
         /**
          * Gets the board state.
          *
-         * @returns {BoardState["board"]}
+         * @returns {BoardState['board']}
          */
         getBoard(): BoardState['board'] {
             return this.board;
@@ -69,7 +65,7 @@ export const useBoardStore: StoreDefinition = defineStore('boardStore', {
         /**
          * Gets the user input used to take a shot.
          *
-         * @returns {BoardState["userInput"]}
+         * @returns {BoardState['userInput']}
          */
         getUserInput(): BoardState['userInput'] {
             return this.userInput;
@@ -78,7 +74,7 @@ export const useBoardStore: StoreDefinition = defineStore('boardStore', {
         /**
          * Checks if the game is over.
          *
-         * @returns {BoardState["gameOver"]}
+         * @returns {BoardState['gameOver']}
          */
         isGameOver(): BoardState['gameOver'] {
             return this.gameOver;
@@ -115,10 +111,10 @@ export const useBoardStore: StoreDefinition = defineStore('boardStore', {
         /**
          * Gets the last shot result.
          *
-         * @returns {BoardState["lastShot"]}
+         * @returns {BoardState['lastShot']}
          */
         getLastShot(): BoardState['lastShot'] {
             return this.lastShot;
         },
-    }
+    },
 });

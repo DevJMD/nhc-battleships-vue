@@ -3,14 +3,10 @@ import { defineStore } from 'pinia';
 
 // Types
 import type { StoreDefinition } from 'pinia';
-import type {
-    BoardCell,
-    Ship,
-    ShipState,
-}                               from '../interface';
+import type { Ship, ShipState } from '../interface';
 
 // State
-import { createShipState }  from '../state/state.ship';
+import { createShipState } from '../state/state.ship';
 import { resetShipsAction } from '../actions/actions.ship';
 
 /**

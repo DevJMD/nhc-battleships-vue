@@ -23,8 +23,7 @@
 import {
     ref,
     onMounted,
-    computed,
-}                        from 'vue';
+} from 'vue';
 import { useBoardStore } from '../stores';
 
 const userInput = ref<string>('');
