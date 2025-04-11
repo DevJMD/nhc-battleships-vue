@@ -72,7 +72,7 @@ const onLetterKeyup = (): void => {
  */
 const onNumberKeydown = (event: KeyboardEvent): void => {
     if (event.key === 'Backspace' && !numberInput.value) {
-        letterField?.value.focus();
+        letterField.value?.focus();
     }
 };
 
@@ -103,6 +103,7 @@ const fireShot = (): void => {
     letterInput.value = '';
     numberInput.value = '';
 
-    letterField?.value.focus();
+    // Focus the letter input again.
+    letterField.value?.focus();
 };
 </script>

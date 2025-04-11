@@ -40,10 +40,13 @@ describe('App.vue', () => {
     it('renders the game title and input elements', async () => {
         expect(wrapper.find('.c-app__header-title').text()).toBe('Battleships  🔄 Reset Game');
 
-        const input: DOMWrapper<Element> = wrapper.find('.c-controls__input');
+        const letterInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--letter');
+        const numberInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--number');
+
         const button: DOMWrapper<Element> = wrapper.find('.c-controls__fire');
 
-        expect(input.exists()).toBe(true);
+        expect(letterInput.exists()).toBe(true);
+        expect(numberInput.exists()).toBe(true);
         expect(button.exists()).toBe(true);
     });
 
@@ -58,8 +61,10 @@ describe('App.vue', () => {
     it('allows firing a shot and updates board, recieving feedback', async () => {
         await flushPromises();
 
-        const input: DOMWrapper<Element> = wrapper.find('.c-controls__input');
-        await input.setValue('A1');
+        const letterInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--letter');
+        const numberInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--number');
+        await letterInput.setValue('A');
+        await numberInput.setValue('1');
 
         const button: DOMWrapper<Element> = wrapper.find('.c-controls__fire');
         await button.trigger('click');
@@ -81,10 +86,12 @@ describe('App.vue', () => {
     it('allows hitting a ship at a specific position', async () => {
         await flushPromises();
 
-        const input: DOMWrapper<Element> = wrapper.find('.c-controls__input');
+        const letterInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--letter');
+        const numberInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--number');
         const button: DOMWrapper<Element> = wrapper.find('.c-controls__fire');
 
-        await input.setValue('A1');
+        await letterInput.setValue('A');
+        await numberInput.setValue('1');
         await button.trigger('click');
 
         await flushPromises();
@@ -99,12 +106,15 @@ describe('App.vue', () => {
     it('prevents firing at the same cell twice', async () => {
         await flushPromises();
 
-        const input: DOMWrapper<Element> = wrapper.find('.c-controls__input');
+        const letterInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--letter');
+        const numberInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--number');
         const button: DOMWrapper<Element> = wrapper.find('.c-controls__fire');
 
-        await input.setValue('A1');
+        await letterInput.setValue('A');
+        await numberInput.setValue('1');
         await button.trigger('click');
-        await input.setValue('A1');
+        await letterInput.setValue('A');
+        await numberInput.setValue('1');
         await button.trigger('click');
 
         await flushPromises();
@@ -120,17 +130,20 @@ describe('App.vue', () => {
 
         await flushPromises();
 
-        const input: DOMWrapper<Element> = wrapper.find('.c-controls__input');
+        const letterInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--letter');
+        const numberInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--number');
         const button: DOMWrapper<Element> = wrapper.find('.c-controls__fire');
 
         // Fire at all ship positions as defined in the shipStore.ships array
-        await input.setValue('A1');
+        await letterInput.setValue('A');
+        await numberInput.setValue('1');
         await button.trigger('click');
 
         // Simulate a click at all cells
         for (const col of 'ABCDEFGHIJ'.split('')) {
             for (let row = 1; row <= 10; row++) {
-                await input.setValue(`${col}${row}`);
+                await letterInput.setValue(col);
+                await numberInput.setValue(row);
                 await button.trigger('click');
             }
         }
@@ -153,11 +166,13 @@ describe('App.vue', () => {
         await flushPromises();
 
         const resetButton: DOMWrapper<Element> = wrapper.find('.c-app__reset-game');
-        const input: DOMWrapper<Element> = wrapper.find('.c-controls__input');
+        const letterInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--letter');
+        const numberInput: DOMWrapper<Element> = wrapper.find('.c-controls__input--number');
         const button: DOMWrapper<Element> = wrapper.find('.c-controls__fire');
 
         // Fire at a cell to simulate game play
-        await input.setValue('A1');
+        await letterInput.setValue('A');
+        await numberInput.setValue('1');
         await button.trigger('click');
 
         expect(wrapper.findAll('.c-feedback__message').length).toBe(2);
