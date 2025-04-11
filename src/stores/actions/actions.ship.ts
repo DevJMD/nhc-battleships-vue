@@ -4,21 +4,26 @@ import type { Ship, BoardCell, ShipPosition } from '../interface';
  * Resets the ship store by clearing the list of ships.
  *
  * @param {{ships: Ship[]}} shipStore
+ *
+ * @returns {void}
  */
 export const resetShipsAction = (shipStore: {
     ships: Ship[];
-}) => {
+}): void => {
     shipStore.ships = [];
 };
 
 
 /**
  * Tries to randomly place a ship on the board.
+ *
  * @param shipType - The type of ship (Battleship, Destroyer, etc.)
  * @param shipSize - The number of cells the ship occupies.
  * @param board - The game board.
  * @param setCell - A callback to update a board cell with a ship id.
  * @param ships - The list of ships from the Ship store.
+ *
+ * @returns {void}
  */
 export const placeShipRandomly = (
     shipType: string,
@@ -34,31 +39,39 @@ export const placeShipRandomly = (
     let placed = false;
 
     while (!placed) {
-        const orientation = Math.random() < 0.5 ? 0 : 1;
-        let maxRow = boardSize;
-        let maxCol = boardSize;
+        // Randomly choose orientation: 0 for horizontal, 1 for vertical.
+        const orientation: number = Math.random() < 0.5 ? 0 : 1;
+        let maxRow: number = boardSize;
+        let maxCol: number = boardSize;
 
+        // Determine the maximum row and column based on orientation.
+        // 0 for horizontal, 1 for vertical.
         if (orientation === 0) {
             maxCol = boardSize - shipSize;
         } else {
             maxRow = boardSize - shipSize;
         }
 
-        const row = Math.floor(Math.random() * maxRow);
-        const col = Math.floor(Math.random() * maxCol);
+        // Generate random row and column positions.
+        const row: number = Math.floor(Math.random() * maxRow);
+        const col: number = Math.floor(Math.random() * maxCol);
         const positions: ShipPosition[] = [];
 
-        let canPlace = true;
+        let canPlace: boolean = true;
 
         for (let i = 0; i < shipSize; i++) {
-            const inRow = orientation === 0 ? row : row + i;
-            const inCol = orientation === 0 ? col + i : col;
+            // Calculate the row and column for the current position.
+            const inRow: number = orientation === 0 ? row : row + i;
+            const inCol: number = orientation === 0 ? col + i : col;
 
+            // Check if the position is already occupied by another ship.
+            // If so, we canny place the ship here.
             if (board[inRow][inCol].shipId !== null) {
                 canPlace = false;
                 break;
             }
 
+            // Otherwise, add the position to the list of positions for this ship.
             positions.push({ row: inRow, col: inCol });
         }
 
@@ -85,6 +98,7 @@ export const placeShipRandomly = (
  *
  * @param {Ship} ship
  * @param {BoardCell[][]} board
+ *
  * @returns {boolean}
  */
 export const isShipSunk = (ship: Ship, board: BoardCell[][]): boolean => {
@@ -96,6 +110,7 @@ export const isShipSunk = (ship: Ship, board: BoardCell[][]): boolean => {
  *
  * @param {Ship[]} ships
  * @param {BoardCell[][]} board
+ *
  * @returns {boolean}
  */
 export const areAllShipsSunk = (ships: Ship[], board: BoardCell[][]): boolean => {

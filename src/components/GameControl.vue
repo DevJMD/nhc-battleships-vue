@@ -1,12 +1,19 @@
 <template>
     <div class="c-controls">
         <form class="c-controls__form" @submit.prevent>
+            <!--
+                The form is used to take input from the player.
+                The player enters a letter (A-J) and a number (1-10) to fire a shot at the game board.
+            -->
             <fieldset class="c-controls__fieldset">
                 <legend class="c-controls__legend">
                     <p>Fire a missile to destroy the battleships.</p>
                 </legend>
             </fieldset>
             <fieldset class="c-controls__fieldset c-controls__fieldset--inputs">
+                <!--
+                    The letter input is used to enter the row (A-ROW_COUNT) of the game board.
+                -->
                 <input
                     type="text"
                     class="c-controls__input c-controls__input--letter"
@@ -16,6 +23,9 @@
                     @input="onLetterInput"
                     @keyup="onLetterKeyup"
                 />
+                <!--
+                    The number input is used to enter the column (1-COLUMN_COUNT) of the game board.
+                -->
                 <input
                     type="number"
                     class="c-controls__input c-controls__input--number"
@@ -26,6 +36,9 @@
                     :max="maxRowCount"
                     :min="1"
                 />
+                <!--
+                    Action: Fire...
+                -->
                 <button class="c-controls__fire" @click="fireShot">Fire!</button>
             </fieldset>
         </form>
@@ -33,21 +46,27 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, ref } from 'vue';
+import { computed, onMounted, ref } from 'vue';
 import { useBoardStore } from '../stores';
 
+// References
 const letterInput = ref<string>('');
 const numberInput = ref<string>('');
 const numberField = ref<HTMLInputElement | null>(null);
 const letterField = ref<HTMLInputElement | null>(null);
-const maxRowCount = ref<number>(0);
 
+// Store
 const boardStore = useBoardStore();
 
+// Computed properties
+const maxRowCount = computed(() => boardStore.getMaxColumnLength);
+const isNumberInputNegative = computed(() => numberInput.value.includes('-'));
+const combinedInput = computed(() => `${letterInput.value.toUpperCase()}${numberInput.value}`);
+
+// On mounted lifecycle hook
 onMounted(() => {
     letterField.value = document.querySelector('.c-controls__input--letter') as HTMLInputElement;
     numberField.value = document.querySelector('.c-controls__input--number') as HTMLInputElement;
-    maxRowCount.value = boardStore.getMaxColumnLength;
 
     letterField.value?.focus();
 });
@@ -86,12 +105,13 @@ const onNumberFocus = (): void => {
  * to indicate negative numbers.
  *
  * @param {KeyboardEvent} event - The keyboard event.
+ *
  * @returns {void}
  */
 const onNumberKeyUp = (event: KeyboardEvent): void => {
     const rawValue = numberField.value?.value || '';
 
-    if (rawValue.includes('-')) {
+    if (isNumberInputNegative) {
         numberInput.value = (numberField.value!.value = rawValue.replace('-', ''));
     }
 
@@ -101,14 +121,15 @@ const onNumberKeyUp = (event: KeyboardEvent): void => {
 };
 
 /**
+ * @example Better way I'd write comments usually - let the code do the talking.
+ *
  * Fires a shot at the coordinate entered by the player.
  *
  * 1. Checks if the letter and number inputs are empty.
  *    If they are, it resets the inputs and focuses on the letter input.
- * 2. Combines the letter and number inputs into a single string.
- * 3. Calls the `processInput` method from the board store to process the input.
- * 4. Resets the input fields.
- * 5. Focuses the letter input again.
+ * 2. Calls the `processInput` method from the board store to process the input.
+ * 3. Resets the input fields.
+ * 4. Focuses the letter input again.
  *
  * @returns {void}
  */
@@ -124,16 +145,13 @@ const fireShot = (): void => {
     }
 
     /* [2] */
-    const combinedInput = `${letterInput.value.toUpperCase()}${numberInput.value}`;
+    boardStore.processInput(combinedInput.value);
 
     /* [3] */
-    boardStore.processInput(combinedInput);
-
-    /* [4] */
     letterInput.value = '';
     numberInput.value = '';
 
-    /* [5] */
+    /* [4] */
     letterField.value?.focus();
 };
 </script>

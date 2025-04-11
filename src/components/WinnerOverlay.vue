@@ -9,10 +9,19 @@
         @keydown.esc="closeOverlay"
         ref="overlay"
     >
-        <div class="c-overlay__content">
+        <!--
+            Simple modal overlay to show when the game is over.
+        -->
+        <div class="c-overlay__modal">
             <span class="c-overlay__emoji" aria-hidden="true">🎉</span>
-            <p id="overlay-title" class="c-overlay__message">Well done! You sank all the ships. There are more enemy
-                ships lurking on the coast of Scarborough, though... <br><br></p>
+            <p id="overlay-title" class="c-overlay__message">
+                Well done! You sank all the ships. There are more enemy
+                ships lurking on the coast of Scarborough, though... <br><br>
+            </p>
+            <!--
+                The game is over, show the player the result.
+                The player can either play again or close the overlay.
+            -->
             <button
                 class="c-overlay__button"
                 @click="restartGame"
@@ -35,18 +44,29 @@
 import { onMounted, onUnmounted, ref } from 'vue';
 import { useBoardStore, useFeedbackStore } from '../stores';
 
+// References
 const boardStore = useBoardStore();
 const feedbackStore = useFeedbackStore();
 const overlay = ref<HTMLElement | null>(null);
 
-const restartGame = () => {
+/**
+ * Restart the game.
+ *
+ * @returns {void}
+ */
+const restartGame = (): void => {
     feedbackStore.clearMessages();
     boardStore.initGame();
 
     closeOverlay();
 };
 
-const closeOverlay = () => {
+/**
+ * Close the overlay.
+ *
+ * @returns {void}
+ */
+const closeOverlay = (): void => {
     boardStore.gameOver = false;
 
     const appHeader = document.querySelector('.app__header-title') as HTMLElement;
@@ -54,12 +74,15 @@ const closeOverlay = () => {
     appHeader?.focus();
 };
 
+// On mounted lifecycle hook
 onMounted(() => {
     if (overlay.value) {
         overlay.value?.focus();
     }
 });
 
+
+// On unmounted lifecycle hook
 onUnmounted(() => {
     closeOverlay();
 });

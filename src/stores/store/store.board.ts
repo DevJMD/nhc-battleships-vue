@@ -9,6 +9,11 @@ import type { BoardState } from '../interface';
 import { createBoardState } from '../state/state.board';
 import { processInputAction, initGameAction, clearLastShotAction } from '../actions/actions.board';
 
+/**
+ * Board store.
+ *
+ * @returns {BoardState} The state of the board store.
+ */
 export const useBoardStore: StoreDefinition = defineStore('boardStore', {
     /**
      * The state of the board store.

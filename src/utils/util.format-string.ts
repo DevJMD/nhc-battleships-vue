@@ -3,6 +3,7 @@
  *
  * @param {string} str
  * @param args
+ *
  * @returns {string}
  */
 const formatString = (str: string, ...args: string[]): string => {

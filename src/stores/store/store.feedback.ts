@@ -9,6 +9,11 @@ import type { FeedbackMessage, FeedbackState } from '../interface';
 import { createFeedbackState } from '../state/state.feedback';
 import { addMessageAction, clearMessagesAction } from '../actions/actions.feedback';
 
+/**
+ * Feedback store.
+ *
+ * @returns {FeedbackState} The state of the feedback store.
+ */
 export const useFeedbackStore: StoreDefinition = defineStore('feedbackStore', {
     /**
      * The state of the feedback store.

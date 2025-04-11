@@ -14,12 +14,19 @@
 import { useBoardStore }    from '../stores';
 import { useFeedbackStore } from '../stores';
 
+// Stores
 const boardStore = useBoardStore();
 const feedbackStore = useFeedbackStore();
 
-const resetGame = () => {
-    const appHeader = document.querySelector('.c-controls__input') as HTMLElement;
+/**
+ * Resets the game.
+ *
+ * @returns {void}
+ */
+const resetGame = (): void => {
+    const appHeader: HTMLElement = document.querySelector('.c-controls__input') as HTMLElement;
 
+    // Reset the game state and clear messages.
     feedbackStore.clearMessages();
     boardStore.initGame();
 

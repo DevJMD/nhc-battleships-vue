@@ -10,7 +10,7 @@ import { createShipState } from '../state/state.ship';
 import { resetShipsAction } from '../actions/actions.ship';
 
 /**
- * The ship store.
+ * Ship store.
  *
  * @returns {ShipState} The state of the ship store.
  */

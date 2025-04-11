@@ -5,6 +5,11 @@ const envColumnCount = Number(import.meta.env.VITE_BS_COLUMN_COUNT) || 8;
 export const ROW_COUNT = Math.max(envRowCount, 8);
 export const COLUMN_COUNT = Math.max(envColumnCount, 8);
 
+/**
+ * Creates the initial state for the board store.
+ *
+ * @returns {BoardState}
+ */
 export const createBoardState = (): BoardState => {
     /**
      * Creates a board state with the specified number of rows and columns.

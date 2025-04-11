@@ -14,6 +14,7 @@ const validColumns = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.slice(0, COLUMN_COUNT);
  * followed by a row number (1 to ROW_COUNT (i.e., 10)).
  *
  * @param {string} input
+ *
  * @returns {boolean}
  */
 const isValidCoordinateFormat = (input: string): boolean => {
@@ -49,6 +50,7 @@ const isValidCoordinateFormat = (input: string): boolean => {
  *
  * @param {BoardState} state
  * @param {string} input
+ *
  * @returns {void}
  */
 export const processInputAction = (state: BoardState, input: string): void => {

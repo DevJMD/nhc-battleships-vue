@@ -5,6 +5,8 @@ import type { FeedbackMessage, FeedbackState } from '../interface';
  *
  * @param {FeedbackState} state
  * @param {string} message
+ *
+ * @returns {void}
  */
 export const addMessageAction = (state: FeedbackState, message: FeedbackMessage): void => {
     state.messages.unshift({
@@ -17,6 +19,8 @@ export const addMessageAction = (state: FeedbackState, message: FeedbackMessage)
  * Clears all messages from the feedback state.
  *
  * @param {FeedbackState} state
+ *
+ * @returns {void}
  */
 export const clearMessagesAction = (state: FeedbackState): void => {
     state.messages = [];
