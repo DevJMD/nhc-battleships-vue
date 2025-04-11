@@ -51,10 +51,7 @@ $global-font-size: 16px;
 @import '@devjmd/frontend/scss/elements/elements.tables';
 @import '@devjmd/frontend/scss/elements/elements.form';
 
-html,
-body {
-    font-family: 'Roboto', sans-serif;
-}
+@import 'elements/elements.page';
 
 //----------------------------------------------------------------------------------------------
 // Objects

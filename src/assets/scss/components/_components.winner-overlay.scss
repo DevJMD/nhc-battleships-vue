@@ -57,9 +57,9 @@ $overlay-button-outline-color: 2px solid rgba(74, 144, 226, .5) !default;
     border-radius: math.div($global-spacing-unit, 4);
     cursor: pointer;
     transition: background-color 0.3s;
-}
 
-@include pocus {
-    background-color: $overlay-button-hover-background-color;
-    outline: $overlay-button-outline-color;
+    @include pocus {
+        background-color: $overlay-button-hover-background-color;
+        outline: $overlay-button-outline-color;
+    }
 }
