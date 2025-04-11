@@ -4,7 +4,24 @@
 A demonstration of a simple battleship game using TypeScript and Vue.
 
 ## Spec
-- The game is played on a 10x10 grid.
+- The game is played on a 10x10 grid (A1-J10).
+- It's single-sided, meaning only you play against the computer.
+- There are 3 ships:
+  - Battleship (5 squares)
+  - Destroyer (4 squares)
+  - Destroyer (4 squares)
+- Ships can be placed either horizontally or vertically.
+- Ships cannot overlap.
+- Ships cannot be placed outside the grid.
+- Ships cannot be placed in the same row or column as another ship.
+- There is feedback for the player when they attack a square:
+  - Hit
+  - Miss
+  - Sunk
+  - Game Over
+  - Invalid move
+- The game ends when all ships are sunk or the player runs out of moves.
+- The game can be reset at any time.
 
 # Development
 - Clone the repository
