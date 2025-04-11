@@ -23,7 +23,9 @@ A demonstration of a simple battleship game using TypeScript and Vue.
 - The game ends when all ships are sunk or the player runs out of moves.
 - The game can be reset at any time.
 
-# Development
+## Prerequisites
+- Node.js (v20+)
+## Installation
 - Clone the repository
 - Create a `.env.local` file in the root directory
 ```bash
