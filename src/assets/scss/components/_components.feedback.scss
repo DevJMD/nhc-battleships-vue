@@ -85,5 +85,9 @@ $feedback-message--sunk-color: #d7e2f6 !default;
             color: $feedback-message--sunk-color !important;
             font-weight: bold !important;
         }
+
+        &--game-started {
+            margin-bottom: 0;
+        }
     }
 }
