@@ -2,6 +2,7 @@
 
 ## Description
 A demonstration of a simple battleship game using TypeScript and Vue.
+See Notes below on improvements that could be made.
 
 ## Spec
 - The game is played on a 10x10 grid (A1-J10).
@@ -70,3 +71,11 @@ Test structure:
 ```bash
 npm run lint
 ```
+
+## Notes
+
+- Improvements;
+    - Testing could be improved by adding more tests for ship placement logic
+    - SASS coupling might be a better design choice/option - keeping it DRY.
+    - Seperation of concerns could be improved by moving some game logic into services.
+
