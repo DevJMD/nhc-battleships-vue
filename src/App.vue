@@ -1,5 +1,5 @@
 <template>
-    <div id="app" class="c-app">
+    <div class="c-app">
         <!-- Main container -->
         <div class="c-app__container" role="main">
             <!-- Left Panel: Header, Controls, Feedback -->
