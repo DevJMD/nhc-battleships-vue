@@ -105,7 +105,7 @@ function animateRocket(row: number, col: number, result: 'hit' | 'miss'): void {
         left: `${startX}px`,
         top: `${startY}px`,
         transform: 'translate(-50%, -50%) scale(0.5)',
-        transition: 'transform .5s ease-out, left 0.5s ease-out, top .5s ease-out',
+        transition: 'transform .5s ease-out, left .5s ease-out, top .5s ease-out',
     };
 
     // Step 2: After a short delay, "fire" the rocket to the target cell the player entered.
@@ -115,7 +115,7 @@ function animateRocket(row: number, col: number, result: 'hit' | 'miss'): void {
             left: `${targetX}px`,
             top: `${targetY}px`,
             transform: 'translate(-50%, -50%) scale(1.5)',
-            transition: 'transform .63s ease-in-out, left 0.63s ease-in-out, top .63s ease-in-out',
+            transition: 'transform .63s ease-in-out, left .63s ease-in-out, top .63s ease-in-out',
         };
     }, 50);
 
